@@ -8239,10 +8239,10 @@ h1, h2, h3, h4, h5,
     .slider-text {
       height: 1150px; } }
   .slider-text h1 {
-    font-size: 60px;
+    font-size: 40px;
     color: #fff;
     line-height: 1.1;
-    font-weight: 200; }
+    font-weight: 300; }
     .slider-text h1 span {
       display: block; }
   .slider-text .icon-wrap .icon {
