@@ -30,7 +30,7 @@
   </head>
   <body>
     
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)) !important; backdrop-filter: blur(10px) !important;">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.html"><img src="images/logo.png"></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@
       <div class="container">
         <div class="row d-flex mb-5 contact-info justify-content-center">
         	<div class="col-md-8">
-        		<div class="row mb-5">
+        		<div class="row mb-2">
 		          <div class="col-md-4 text-center py-4">
 		          	<div class="icon">
 		          		<span class="icon-map-o"></span>
@@ -89,31 +89,37 @@
 		        </div>
           </div>
         </div>
-        <div class="row block-9 justify-content-center mb-5">
+        <div class="row block-9 justify-content-center mb-2">
           <div class="col-md-8 mb-md-5">
           	<h2 class="text-center">If you got any questions <br>please do not hesitate to send us a message</h2>
-            <form action="#" class="bg-light p-5 contact-form">
+            <form action="https://api.web3forms.com/submit" method="POST" id="form">
+              <input type="hidden" name="access_key" value="f823561d-cc5d-474b-8012-081526847b3a">
+
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="text" class="form-control" name="name" required placeholder="Your Name">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
+                <input type="text" class="form-control" name="email" required placeholder="Your Email">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
+                <input type="text" class="form-control" name="subject" placeholder="Subject">
               </div>
               <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                <textarea name="" id="" cols="30" rows="7" name="message" required class="form-control" placeholder="Message"></textarea>
               </div>
               <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                <button  class="styled-button" type="submit">Submit Form</button>
               </div>
+              <span>
+              <div id="loader" style="display: none;">Loading...</div>
+              <div id="result"></div>
+            </span>
             </form>
           
           </div>
         </div>
         <div class="row justify-content-center">
-        	<div class="col-md-10">
+        	<div class="col-md-8">
         		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.6115796555473!2d-79.81420659999999!3d43.656248999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b15258f62d4e3%3A0xfe3e46fdb9d1cb59!2sA%20one%20movers!5e0!3m2!1sen!2sin!4v1722328600624!5m2!1sen!2sin" width="900" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         	</div>
         </div>
@@ -206,6 +212,54 @@
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
     
+<script>
+  const form = document.getElementById('form');
+  const result = document.getElementById('result');
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+    result.innerHTML = "Please wait..."
+  
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      },
+      body: json
+  })
+  .then(async (response) => {
+      let json = await response.json();
+      document.getElementById('loader').style.display = "none";
+      if (response.status == 200) {
+          result.innerHTML = "Form submitted successfully";
+          result.classList.remove('error');
+      } else {
+          console.log(response);
+          result.innerHTML = json.message;
+          result.classList.add('error');
+      }
+      result.style.display = "block"; 
+  })
+  .catch(error => {
+      console.log(error);
+      result.innerHTML = "Something went wrong!";
+      result.classList.add('error');
+      result.style.display = "block"; 
+  })
+  .finally(function() {
+      form.reset();
+      setTimeout(() => {
+          result.style.display = "none";
+      }, 3000);
+  });
+  document.getElementById('loader').style.display = "block";
+  
+  });  
+  </script>
   </body>
 
 <!-- Mirrored from aonemover.mystartupweb.online/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Jul 2024 16:18:21 GMT -->
