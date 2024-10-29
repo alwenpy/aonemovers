@@ -12714,3 +12714,8 @@ textarea.form-control {
   z-index: 2;
   position: relative;
 }
+
+.carousel-item-next{
+  display: inline;
+  transition: ease-in 0.1s;
+}
