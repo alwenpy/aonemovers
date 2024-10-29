@@ -12719,3 +12719,11 @@ textarea.form-control {
   display: inline;
   transition: ease-in 0.1s;
 }
+
+.hero-wrap {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 2s ease-in-out;
+  object-fit: cover;
+}

@@ -51,27 +51,27 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
-    <div class="hero-wrap" style="background-image: url('images/bg.jpeg');" data-stellar-background-ratio="0.5">
+    <div class="hero-wrap" id="hero" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text justify-content-start align-items-center">
           <div class="col-lg-6 col-md-6 ftco-animate d-flex align-items-end">
-          	<div class="text">
-	            <h1 class="mb-4">Seamless Relocation,<span>Superior Service -</span> <span>Your Moving Partner</span></h1>
-	            <p style="font-size: 18px;">AOne Movers in Brampton offers top-notch residential, commercial, and long-distance moving services, along with professional service options, ensuring a smooth and stress-free relocation experience.</p>
-	            <a href="https://vimeo.com/45830194" class="icon-wrap popup-vimeo d-flex align-items-center mt-4">
-	            	<div class="icon d-flex align-items-center justify-content-center">
-	            		<span class="ion-ios-play"></span>
-	            	</div>
-	            	<div class="heading-title ml-5">
-		            	<span>Easy steps for renting a car</span>
-	            	</div>
-	            </a>
+            <div class="text">
+              <h1 class="mb-4">Seamless Relocation,<span>Superior Service -</span> <span>Your Moving Partner</span></h1>
+              <p style="font-size: 18px;">AOne Movers in Brampton offers top-notch residential, commercial, and long-distance moving services, along with professional service options, ensuring a smooth and stress-free relocation experience.</p>
+              <a href="https://vimeo.com/45830194" class="icon-wrap popup-vimeo d-flex align-items-center mt-4">
+                <div class="icon d-flex align-items-center justify-content-center">
+                  <span class="ion-ios-play"></span>
+                </div>
+                <div class="heading-title ml-5">
+                  <span>Easy steps for renting a car</span>
+                </div>
+              </a>
             </div>
           </div>
           <div class="col-lg-2 col"></div>
           <div class="col-lg-4 col-md-6 mt-0 mt-md-5 d-flex">
-          	<form action="#" class="request-form ftco-animate">
+            <form action="#" class="request-form ftco-animate">
           		<h2>Book your Move</h2>
 	    				<div class="form-group">
 	    					<label for="" class="label">Pick-up location</label>
@@ -103,10 +103,12 @@
 	              <input type="submit" value="Search Vehicle" class="btn btn-primary py-3 px-4">
 	            </div>
 	    			</form>
+               
           </div>
         </div>
       </div>
     </div>
+    
 
 
     <section class="ftco-section services-section ftco-no-pt ftco-no-pb">
@@ -516,7 +518,18 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+<script>
+  const hero = document.getElementById("hero");
+const images = ["images/slide-0.jpg", "images/slide-1.jpg", "images/slide-2.jpg", "images/slide-3.jpg", "images/slide-4.jpg","images/slide-5.jpg"];
+let currentImageIndex = 0;
 
+function changeBackground() {
+  hero.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+}
+
+setInterval(changeBackground, 4000);
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
