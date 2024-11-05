@@ -10518,7 +10518,7 @@ h5,
   content: "";
   opacity: 0.4;
   background: #000000;
-  height: 850px;
+  height: auto;
 }
 @media (max-width: 991.98px) {
   .hero-wrap {
